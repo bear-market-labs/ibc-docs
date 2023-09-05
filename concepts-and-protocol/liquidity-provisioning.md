@@ -22,7 +22,7 @@ $$
 P(x)=P_{0}\left(\frac{S_{0}}{S_0+x}\right)^{1-\frac{P_{0}S_{0}}{R_{0}}}
 $$
 
-The providing of \Delta R amount of reserve assets updates the curve to be as of below shape.
+The providing of $$\Delta R$$ amount of reserve assets updates the curve to be as of below shape.
 
 $$
 P(x)=P_{0}\left(\frac{S_{0}}{S_0+x}\right)^{1-\frac{P_{0}S_{0}}{R_{0}+\Delta R}}
