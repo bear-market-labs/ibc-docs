@@ -34,15 +34,17 @@ Where $$x$$ is the amount of assets being minted following initialization.&#x20;
 
 
 
+### Initial Asset Mint
+
+During curve initialization, the initializer is given newly minted assets. The minted amount is equivalent to the initial supply specified at initialization, $$S_0$$.
+
+
+
 ### Initial LP Token Mint
 
-The initializer of the curve is also minted LP tokens, representing their contribution to the liquidity reserve.&#x20;
-
-
+The initializer of the curve is also minted LP tokens, representing their contribution to the liquidity reserve. The minted LP token amount is equal to the supplied amount of liquidity reserves, minus the amount of reserves needed to fully back initial minted supply at the initial price:&#x20;
 
 $$
-\Delta L = \frac{\Delta R}{R-PS} \cdot L
+R_0-P_0S_0
 $$
-
-
 
