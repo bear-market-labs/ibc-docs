@@ -18,11 +18,7 @@ $$
 
 With P being the spot price at a minted supply of S, m being a price multiplier value, and k being the exponent determining the curve's curvature.&#x20;
 
-
-
-&#x20;// Image of price=supply^-0.5
-
-
+<figure><img src="../.gitbook/assets/x^{-12}.png" alt="" width="375"><figcaption></figcaption></figure>
 
 Just like regular bonding curves, the area under inverse bonding curves also represent the amount of reserve assets required for minting. This value, the integral of the inverse bonding curve. comes out as (for minting from 0 supply to x):&#x20;
 

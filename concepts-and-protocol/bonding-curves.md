@@ -18,19 +18,21 @@ Such assets usually (but not always) contain the following properties:&#x20;
 
 
 
-Bonding curves are often visualized using a price-to-supply graph. For example, a bonding curve of `price=supply^2` visualizes as:&#x20;
+Bonding curves are often visualized using a price-to-supply graph. For example, a bonding curve of `price=1/6 * supply^2` visualizes as:&#x20;
 
-
-
-&#x20;// Image of bonding curve
-
-
+<figure><img src="../.gitbook/assets/Bonding Curve (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 The spot prices of assets and the amount of reserve assets required for their minting is all calculated based on the bonding curve, the amount of reserve assets required corresponding to the definite integral of the bonding curve from the supply prior to mint and to the supply following the mint (equivalent to the area below the bonding curve).&#x20;
 
-On the above example of `price=supply^2` at a starting supply of 1, the minting of 2 tokens leads to a spot price increase from 1 to 9, and consumes 8.666... amount of reserve assets.&#x20;
+On the above example of `price=1/6 * supply^2` at a starting supply of 1, the minting of 2 tokens leads to a spot price increase from 0.1666... to 1.5, and consumes 1.444... amount of reserve assets.&#x20;
 
 
 
-Bonding curves can exist in various shapes and sizes.&#x20;
+Bonding curves can exist in various shapes and sizes:&#x20;
+
+<figure><img src="../.gitbook/assets/12x.png" alt="" width="375"><figcaption><p><code>price=1/2 * supply</code></p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/2sqrt{x}.png" alt="" width="375"><figcaption><p><code>price=2 sqrt(supply)</code></p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/e^{x3}-1 (1).png" alt="" width="375"><figcaption><p><code>price=exp(supply/3)-1</code></p></figcaption></figure>
 

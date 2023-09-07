@@ -30,13 +30,9 @@ $$
 
 Showing this in graph format looks like the below.&#x20;
 
+<figure><img src="../.gitbook/assets/Add LP.png" alt="" width="375"><figcaption></figcaption></figure>
 
-
-&#x20;// Image of curve graphs
-
-
-
-Where the red curve representing the inverse bonding curve prior to the LP addition and the blue curve corresponding to the curve after adding liquidity.&#x20;
+Where the red curve representing the inverse bonding curve prior to the LP addition and the blue curve corresponding to the curve after adding liquidity. As seen on the graph, the increased market depth allows users to mint more assets per reserve asset used and retrieve more reserve assets per asset burnt.&#x20;
 
 
 
@@ -72,13 +68,9 @@ $$
 
 Displaying the update as a graphed format gives out:&#x20;
 
+<figure><img src="../.gitbook/assets/Remove LP.png" alt="" width="375"><figcaption></figcaption></figure>
 
-
-&#x20;// Image of graphs
-
-
-
-With the red curve being the inverse bonding curve prior to LP withdrawal and the blue curve after.&#x20;
+With the red curve being the inverse bonding curve prior to LP withdrawal and the blue curve after. Market depth is also reduced.&#x20;
 
 
 
@@ -98,15 +90,7 @@ $$
 \left(R_0-P_0S_0\right)\left(\frac{S_0}{S}\right)^{-\frac{P_0S_0}{R_0}}
 $$
 
+Plotting this over as a value-to-asset-supply graph looks like ( $$R_0=6, S_0=3, P_0=1$$ ):&#x20;
 
-
-
-
-
-
-
-
-
-
-
+<figure><img src="../.gitbook/assets/LP value.png" alt="" width="375"><figcaption></figcaption></figure>
 
