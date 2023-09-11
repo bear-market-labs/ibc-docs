@@ -2,26 +2,53 @@
 
 Just like bonding curves, users may buy (mint) / sell (burn) assets to / from an initialized inverse bonding curve. The inverse bonding curve acts as the counterparty for such trades, utilizing its liquidity reserve as market liquidity.&#x20;
 
-Just like regular bonding curves, the amount of reserve assets required to mint a certain amount of assets is equivalent to the area under the inverse bonding curve (integral of the curve). The integral can be calculated as:&#x20;
+Just like regular bonding curves, the amount of reserve assets required to mint a certain amount of assets is equivalent to the area under the inverse bonding curve (integral of the curve). While values for minting and burning can be calculated with integration, it can also be derived from the curve's invariant with ease.&#x20;
 
 $$
-\int_{0}^{\Delta S} P \cdot {\left(\frac{S}{S+x}\right)}^{1-\frac{PS}{R}}dx
+\frac{R}{S^u}=\frac{R+\Delta R}{{\left(S+\Delta S\right)}^u}=const.
 $$
-
-
-
-
 
 
 
 ### Minting
 
-New assets can be minted (bought) by supplying reserve assets to the inverse bonding curve, from which the inverse bonding curve calculates the amount to be minted. If the amount of reserve assets supplied is \Delta R,&#x20;
+New assets can be minted (bought) by supplying reserve assets to the inverse bonding curve, from which the inverse bonding curve calculates the amount to be minted. If the amount of reserve assets supplied is $$\Delta R$$ and the amount being is $$\Delta S$$, the below must be satisfied.&#x20;
+
+$$
+\frac{S}{S+\Delta S}={\left(\frac{R}{R+\Delta R}\right)}^{\frac{1}{u}}
+$$
+
+Thereby yielding $$\Delta S$$ as:&#x20;
+
+$$
+\Delta S={\left(1+\frac{\Delta R}{R}\right)}^{\frac{1}{u}}S-S
+$$
+
+The spot price post-mint is the updated to become the below:&#x20;
+
+$$
+\frac{iu}{{\left(S+\Delta S\right)}^{1-u}}
+$$
 
 
 
 ### Burning
 
-with its liquidity reserve used to either receive new reserve assets from minting, or give out reserve assets from burning.&#x20;
+Users may also burn minted assets via the inverse bonding curve to receive reserve assets. The amount of assets burnt ($$\Delta S$$) and the amount of reserve assets given ($$\Delta R$$) has the relationship of:&#x20;
 
-Once an inverse bonding curve is initialized, users may mint asset by supplying&#x20;
+$$
+\frac{R}{R-\Delta R}={\left(\frac{S}{S-\Delta S}\right)}^{u}
+$$
+
+From which $$\Delta R$$ comes out as:&#x20;
+
+$$
+\Delta R=R-{\left(1-\frac{\Delta S}{S}\right)}^{u}R
+$$
+
+The post-burn price then becomes:&#x20;
+
+$$
+\frac{iu}{{\left(S-\Delta S\right)}^{1-u}}
+$$
+

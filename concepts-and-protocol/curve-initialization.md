@@ -34,6 +34,36 @@ Where $$x$$ is the amount of assets being minted following initialization.&#x20;
 
 
 
+### Curve Invariant
+
+The generated inverse bonding curve is observed to have the below invariant ($$i$$) as mints and burns occur. $$i$$ does not update during mints and burns, but updates with LP additions and withdraws.
+
+$$
+i=\frac{R}{S^{u}}
+$$
+
+$$u$$ represents the utilization of provided liquidity vs. liquidity used to back minted assets at the current spot price. Similar to $$i$$, $$u$$ does not update during mints and burns, but updates with LP additions and withdrawals. $$u$$ is defined as:&#x20;
+
+$$
+u=\frac{PS}{R}
+$$
+
+With initialized values of $$R_0$$, $$S_0$$, $$P_0$$, the values $$i$$ and $$u$$ are set as:&#x20;
+
+$$
+i=\frac{R_0}{{S_0}^{u}},\,u=\frac{P_0S_0}{R_0}
+$$
+
+The newly added values of $$i$$ and $$u$$ allow the price curve to also be written as:&#x20;
+
+$$
+P(x)=\frac{iu}{{\left(S_0+x\right)}^{1-u}}
+$$
+
+The invariant is used extensively in the inverse bonding curve's implementation.&#x20;
+
+
+
 ### Initial Asset Mint
 
 During curve initialization, the initializer is given newly minted assets. The minted amount is equivalent to the initial supply specified at initialization, $$S_0$$.
