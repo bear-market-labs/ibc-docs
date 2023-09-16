@@ -1,12 +1,42 @@
 # Curve Initialization
 
-The inverse bonding curve first starts off with the supplement of initial liquidity reserves ($$R_0$$), together with the specified values of initial minted supply ($$S_0$$), and the starting spot price ($$P_0$$).&#x20;
+The inverse bonding curve first starts off with an initializer providing initial parameter values of initial (virtual) liquidity reserves ($$R_0$$), initial (virtual) minted supply ($$S_0$$), and the starting spot price ($$P_0$$).&#x20;
+
+
+
+### Virtual Reserves and Supply
+
+The reserves and supply values specified at initialization are virtual - meaning no reserve assets are actually provided and no assets nor LP tokens are actually minted back to the initializer. The virtual reserves and supply are only used for calculating further interactions with the initialized curve and cannot be used to withdraw or trade against the curve's liquidity reserves, even when actual reserve assets have been provided the later user interactions.&#x20;
+
+
+
+#### Initial Reserve Amount (Virtual)
+
+The curve initializes to consider itself containing the specified $$R_0$$ amount of liquidity reserves. The actual reserve asset balance of itself is 0, as no reserve assets have been provided at initialization.&#x20;
+
+
+
+#### Initial Asset Supply (Virtual)
+
+The initialized curve starts with a minted asset supply equivalent to the initial supply specified at initialization, $$S_0$$. No user has ownership of this minted amount and this amount thus cannot be staked or accrue fees distributed to stakers.&#x20;
+
+
+
+#### Initial LP Token Supply (Virtual)
+
+The curve also starts with an initial minted supply of LP tokens, later used to calculate the LP token mint amounts to those providing liquidity to the initialized curve. This initial minted supply is also of a virtual value, meaning it is not owned by any user and is excluded from all fee distributions to LPs. The virtual LP token amount is calculated as:&#x20;
+
+$$
+R_0-P_0S_0
+$$
+
+Which is equal to the specified amount of virtual reserves, minus the amount of virtual reserves that would be needed to fully back the initial virtual minted supply at the initial price.&#x20;
 
 
 
 ### Curve Formation
 
-Following from a generic inverse bonding curve of $$\frac{m}{x^k}$$, the initialized curve must show a spot price of $$P_0$$ at a minted supply of $$S_0$$:&#x20;
+Following from a generic inverse bonding curve of $$\frac{m}{x^k}$$, the initialized curve must show a spot price of $$P_0$$ at a minted virtual supply of $$S_0$$:&#x20;
 
 $$
 \frac{m}{{S_0}^k}=P_0
@@ -61,20 +91,4 @@ P(x)=\frac{iu}{{\left(S_0+x\right)}^{1-u}}
 $$
 
 The invariant is used extensively in the inverse bonding curve's implementation.&#x20;
-
-
-
-### Initial Asset Mint
-
-During curve initialization, the initializer is given newly minted assets. The minted amount is equivalent to the initial supply specified at initialization, $$S_0$$.
-
-
-
-### Initial LP Token Mint
-
-The initializer of the curve is also minted LP tokens, representing their contribution to the liquidity reserve. The minted LP token amount is equal to the supplied amount of liquidity reserves, minus the amount of reserves needed to fully back initial minted supply at the initial price:&#x20;
-
-$$
-R_0-P_0S_0
-$$
 
