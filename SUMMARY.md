@@ -12,6 +12,7 @@
 * [Minting / Burning](concepts-and-protocol/minting-burning.md)
 * [Liquidity Provisioning](concepts-and-protocol/liquidity-provisioning.md)
 * [IBC Token](concepts-and-protocol/ibc-token.md)
+* [Fees](concepts-and-protocol/fees.md)
 
 ## Smart Contracts
 
