@@ -17,5 +17,5 @@
 ## Smart Contracts
 
 * [Deployed Contracts](smart-contracts/deployed-contracts.md)
-* [Curve](smart-contracts/curve.md)
+* [InverseBondingCurve.sol](smart-contracts/inversebondingcurve.sol.md)
 * [ERC20](smart-contracts/erc20.md)
