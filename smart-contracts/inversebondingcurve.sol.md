@@ -86,14 +86,12 @@ event LiquidityRemoved(
 
 
 
-#### `LiquidityStaked -> InverseTokenStaked?`
+#### `TokenStaked`
 
 Emitted when IBC is staked.&#x20;
 
 ```solidity
-event LiquidityStaked(address indexed from, uint256 amount); 
-
-event InverseTokenStaked(address indexed from, uint256 amount); 
+event TokenStaked(address indexed from, uint256 amount); 
 ```
 
 | Parameter | Type    | Description       |
@@ -105,14 +103,12 @@ event InverseTokenStaked(address indexed from, uint256 amount);
 
 
 
-#### `LiquidityUnstaked -> InverseTokenUnstaked?`
+#### `TokenUnstaked`
 
 Emitted when IBC is unstaked.&#x20;
 
 ```solidity
-event LiquidityUnstaked(address indexed from, uint256 amount); 
-
-event InverseTokenUnstaked(address indexed from, uint256 amount); 
+event TokenUnstaked(address indexed from, uint256 amount); 
 ```
 
 | Parameter | Type    | Description         |
