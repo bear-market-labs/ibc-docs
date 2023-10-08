@@ -2,7 +2,7 @@
 description: >-
   **THIS DOCUMENT IS STRICTLY CONFIDENTIAL - DO NOT SHARE EXTERNALLY** BEAR
   MARKET LABS PTE. LTD. Feel Free to Reach Out At:
-  https://twitter.com/bearmarketlabs
+  https://twitter.com/ryanology045
 ---
 
 # The Inverse Bonding Curve
