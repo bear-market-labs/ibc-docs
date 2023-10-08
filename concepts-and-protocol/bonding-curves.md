@@ -10,11 +10,11 @@ A smart contract implementation of a bonding curve retains a pool of reserve ass
 
 Such assets usually (but not always) contain the following properties:&#x20;
 
-* Unbounded supply: there exists no limit to the number of tokens that can be minted.&#x20;
-* Deterministic price: the asset price is set from a predefined function of supply.&#x20;
-* Continuous price: prices move smoothly without any jumps or breaks.&#x20;
-* Monotonic price: the price changes in a way that it always increases with mints.
-* Instant liquidity: assets can be minted or burnt instantaneously at any time.&#x20;
+* **Unbounded supply**: there exists no limit to the number of tokens that can be minted.&#x20;
+* **Deterministic price**: the asset price is set from a predefined function of supply.&#x20;
+* **Continuous price**: prices move smoothly without any jumps or breaks.&#x20;
+* **Monotonic price**: the price changes in a way that it always increases with mints.
+* **Instant liquidity**: assets can be minted or burnt instantaneously at any time.&#x20;
 
 
 

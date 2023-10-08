@@ -6,19 +6,19 @@ The inverse bonding curve first starts off with an initializer providing initial
 
 ### Virtual Reserves and Supply
 
-The reserves and supply values specified at initialization are virtual - meaning no reserve assets are actually provided and no assets nor LP tokens are actually minted back to the initializer. The virtual reserves and supply are only used for calculating further interactions with the initialized curve and cannot be used to withdraw or trade against the curve's liquidity reserves, even when actual reserve assets have been provided the later user interactions.&#x20;
+The reserves and supply values specified at initialization are virtual - meaning no ETH are actually provided and no IBC nor LP tokens are actually minted back to the initializer. The virtual reserves and supply are only used for calculating further interactions with the initialized curve and cannot be used to withdraw or trade against the curve's liquidity reserves, even when actual ETH have been provided the later user interactions.&#x20;
 
 
 
 #### Initial Reserve Amount (Virtual)
 
-The curve initializes to consider itself containing the specified $$R_0$$ amount of liquidity reserves. The actual reserve asset balance of itself is 0, as no reserve assets have been provided at initialization.&#x20;
+The curve initializes to consider itself containing the specified $$R_0$$ amount of liquidity reserves. The actual ETH balance of itself is 0, as no ETH has been provided at initialization.&#x20;
 
 
 
 #### Initial Asset Supply (Virtual)
 
-The initialized curve starts with a minted asset supply equivalent to the initial supply specified at initialization, $$S_0$$. No user has ownership of this minted amount and this amount thus cannot be staked or accrue fees distributed to stakers.&#x20;
+The initialized curve starts with a minted IBC supply equivalent to the initial supply specified at initialization, $$S_0$$. No user has ownership of this minted amount and this amount thus cannot be staked or accrue fees distributed to stakers.&#x20;
 
 
 
@@ -60,7 +60,7 @@ $$
 P(x)=P_0{\left(\frac{S_0}{S_0+x}\right)}^{1-\frac{P_0S_0}{R_0}}
 $$
 
-Where $$x$$ is the amount of assets being minted following initialization.&#x20;
+Where $$x$$ is the amount of IBC being minted following initialization.&#x20;
 
 
 
@@ -72,7 +72,7 @@ $$
 i=\frac{R}{S^{u}}
 $$
 
-$$u$$ represents the utilization of provided liquidity vs. liquidity used to back minted assets at the current spot price. Similar to $$i$$, $$u$$ does not update during mints and burns, but updates with LP additions and withdrawals. $$u$$ is defined as:&#x20;
+$$u$$ represents the utilization of provided liquidity vs. liquidity used to back minted IBC at the current spot price. Similar to $$i$$, $$u$$ does not update during mints and burns, but updates with LP additions and withdrawals. $$u$$ is defined as:&#x20;
 
 $$
 u=\frac{PS}{R}

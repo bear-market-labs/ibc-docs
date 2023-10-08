@@ -4,6 +4,10 @@ The inverse bonding curve (IBC) token is the token minted via the first onchain 
 
 
 
+<figure><img src="../.gitbook/assets/IBC_Logo_Circle_1000x1000.png" alt="" width="375"><figcaption></figcaption></figure>
+
+
+
 ### Characteristics
 
 All IBC in existence is minted through the inverse bonding curve and thus contains the following properties:&#x20;

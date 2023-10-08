@@ -31,3 +31,4 @@ Each participant contains the following characteristics:&#x20;
 * Their position value increases as the price deviates from the price at the time of LP.&#x20;
 * Adding and removing liquidity incur a fee, distributed to IBC stakers and LPs.&#x20;
 * LPs accrue prorated fees from mints and burns and LP adds and removals.&#x20;
+* LPs may be required to provide or receive additional IBC in order for LP removal.&#x20;

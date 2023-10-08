@@ -1,5 +1,11 @@
 # InverseBondingCurve.sol
 
+
+
+{% hint style="danger" %}
+Requires update
+{% endhint %}
+
 ### Events
 
 #### `CurveInitialized`

@@ -5,7 +5,7 @@ The smart contracts that constitute the inverse bonding curve protocol are deplo
 | Classification | Name             | Chain ID |
 | -------------- | ---------------- | -------- |
 | Mainnet        | Ethereum Mainnet | 1        |
-| Testnet        | Sepolia          | idk      |
+| Testnet        | Sepolia          | 11155111 |
 
 
 
@@ -18,10 +18,9 @@ The smart contracts that constitute the inverse bonding curve protocol are deplo
 
 #### ERC20-compliant token contracts
 
-| Name  | Address |
-| ----- | ------- |
-| IBC   | 0x...   |
-| IBCLP | 0x...   |
+| Name | Address |
+| ---- | ------- |
+| IBC  | 0x...   |
 {% endtab %}
 
 {% tab title="Sepolia" %}
@@ -32,10 +31,9 @@ The smart contracts that constitute the inverse bonding curve protocol are deplo
 
 #### ERC20-compliant token contracts
 
-| Name  | Address |
-| ----- | ------- |
-| IBC   | 0x...   |
-| IBCLP | 0x...   |
+| Name | Address |
+| ---- | ------- |
+| IBC  | 0x...   |
 {% endtab %}
 {% endtabs %}
 
