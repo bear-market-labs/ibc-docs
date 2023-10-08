@@ -1,3 +1,10 @@
+---
+description: >-
+  **THIS DOCUMENT IS STRICTLY CONFIDENTIAL - DO NOT SHARE EXTERNALLY** BEAR
+  MARKET LABS PTE. LTD. Feel Free to Reach Out At:
+  https://twitter.com/bearmarketlabs
+---
+
 # The Inverse Bonding Curve
 
 The inverse bonding curve implementation is the first demonstration of inverse bonding curves; used for minting assets that devalue as bought and rise in value as sold. **The token minted via the inverse bonding curve implementation, IBC, is the first asset in history that follows the exact inverse of regular market dynamics.**&#x20;
