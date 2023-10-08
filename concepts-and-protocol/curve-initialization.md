@@ -27,10 +27,10 @@ The initialized curve starts with a minted asset supply equivalent to the initia
 The curve also starts with an initial minted supply of LP tokens, later used to calculate the LP token mint amounts to those providing liquidity to the initialized curve. This initial minted supply is also of a virtual value, meaning it is not owned by any user and is excluded from all fee distributions to LPs. The virtual LP token amount is calculated as:&#x20;
 
 $$
-R_0-P_0S_0
+P_0\left(R_0-P_0S_0\right)
 $$
 
-Which is equal to the specified amount of virtual reserves, minus the amount of virtual reserves that would be needed to fully back the initial virtual minted supply at the initial price.&#x20;
+Which is equal to the initial price, times the specified amount of virtual reserves minus the amount of virtual reserves that would be needed to fully back the initial virtual minted supply at the initial price.&#x20;
 
 
 
