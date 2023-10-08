@@ -2,7 +2,6 @@
 
 * [The Inverse Bonding Curve](README.md)
 * [Rationales and Theories](rationales-and-theories.md)
-* [Non-Technical Overview](non-technical-overview.md)
 
 ## Concepts & Protocol
 
