@@ -1,7 +1,6 @@
 # Table of contents
 
 * [The Inverse Bonding Curve](README.md)
-* [Rationales and Theories](rationales-and-theories.md)
 
 ## Concepts & Protocol
 
