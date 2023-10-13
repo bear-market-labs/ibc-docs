@@ -1,8 +1,14 @@
 # Inverse Bonded Assets (ibAssets)
 
-ibAssets are tokens minted via IBCs. The first ibAsset to exist is ibETH, which uses ETH as its reserve asset. The ibETH token is utilized to showcase the characteristics of inverse bonding curves, and serves no utility (including governance controls) in or out of the protocol aside from fee accruals.&#x20;
+ibAssets are tokens minted via IBCs. ibAssets are utilized to showcase the characteristics of IBCs, and serves no utility (including governance controls) in or out of the protocol aside from fee accruals from staking or providing liquidity.&#x20;
 
-<figure><img src="../.gitbook/assets/IBC_Logo_Circlized_1000x1000.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/IBC_Logo_Circlized.svg" alt="" width="188"><figcaption><p>Reference logo for ibAssets</p></figcaption></figure>
+
+
+
+The first ibAsset to exist is ibETH, which uses ETH as its reserve asset. ibETH is generated at protocol genesis, being the first asset to show inversed market properties.&#x20;
+
+<figure><img src="../.gitbook/assets/ibETH_Logo.svg" alt="" width="188"><figcaption><p>ibETH logo</p></figcaption></figure>
 
 
 
