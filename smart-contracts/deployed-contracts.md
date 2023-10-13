@@ -55,3 +55,13 @@ The smart contracts that constitute the inverse bonding curve implementation are
 {% endtab %}
 {% endtabs %}
 
+
+
+## Admin Controls
+
+IBCs are a novel mechanism that hasn't existed anywhere before. All novel mechanisms contain the risk of unexpected / unwanted logic executions. Although the IBC implementation has been audited, certain admin controls are added to mitigate the possibility of such risks:&#x20;
+
+* **Pausability**: the admin can pause the implementation, disallowing further interactions.&#x20;
+* **Upgradability**: the admin can upgrade the implementation code.&#x20;
+
+These admin controls are temporary and are planned to be removed as the implementation stabilizes.&#x20;

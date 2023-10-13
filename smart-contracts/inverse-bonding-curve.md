@@ -21,6 +21,8 @@ event CurveInitialized(
 );
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter            | Type    | Description                                     |
 | -------------------- | ------- | ----------------------------------------------- |
 | from\*               | address | Address of initializer                          |
@@ -31,6 +33,8 @@ event CurveInitialized(
 | parameterInvariant   | uint256 | Curve invariant at initialization               |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -49,6 +53,8 @@ event LiquidityAdded(
 ); 
 ```
 
+{% tabs %}
+{% tab title="First Tab" %}
 | Parameter               | Type    | Description                                     |
 | ----------------------- | ------- | ----------------------------------------------- |
 | from\*                  | address | Address of LP                                   |
@@ -59,6 +65,8 @@ event LiquidityAdded(
 | newParameterInvariant   | uint256 | Curve invariant after LP addition               |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -79,6 +87,8 @@ event LiquidityRemoved(
 ); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter               | Type    | Description                                    |
 | ----------------------- | ------- | ---------------------------------------------- |
 | from\*                  | address | Address of LP                                  |
@@ -91,6 +101,8 @@ event LiquidityRemoved(
 | newParameterInvariant   | uint256 | Curve invariant after LP removal               |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -102,12 +114,16 @@ Emitted when ibAssets are staked.&#x20;
 event TokenStaked(address indexed from, uint256 amount); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter | Type    | Description       |
 | --------- | ------- | ----------------- |
 | from\*    | address | Address of staker |
 | amount    | uint256 | Stake amount      |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -119,12 +135,16 @@ Emitted when ibAssets are unstaked.&#x20;
 event TokenUnstaked(address indexed from, uint256 amount); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter | Type    | Description         |
 | --------- | ------- | ------------------- |
 | from\*    | address | Address of unstaker |
 | amount    | uint256 | Unstake amount      |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -141,6 +161,8 @@ event TokenBought(
 ); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter   | Type    | Description                      |
 | ----------- | ------- | -------------------------------- |
 | from\*      | address | Address of buyer / minter        |
@@ -149,6 +171,8 @@ event TokenBought(
 | amountOut   | uint256 | ibAsset amount minted from buy   |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -165,6 +189,8 @@ event TokenSold(
 ); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter   | Type    | Description                           |
 | ----------- | ------- | ------------------------------------- |
 | from\*      | address | Address of seller / burner            |
@@ -173,6 +199,8 @@ event TokenSold(
 | amountOut   | uint256 | Reserve asset amount returned in sell |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -189,6 +217,8 @@ event RewardClaimed(
 ); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter          | Type    | Description                         |
 | ------------------ | ------- | ----------------------------------- |
 | from\*             | address | Address of reward claimer           |
@@ -197,6 +227,8 @@ event RewardClaimed(
 | reserveAmount      | uint256 | Amount of rewards in reserve assets |
 
 \* = indexable
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -213,12 +245,34 @@ event FeeConfigChanged(
 ); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter   | Type       | Description                            |
 | ----------- | ---------- | -------------------------------------- |
 | actionType  | ActionType | Type of user action                    |
 | lpFee       | uint256    | Rate of fees given to LPs              |
 | stakingFee  | uint256    | Rate of fees given to ibAsset stakers  |
 | protocolFee | uint256    | Rate of fees given to protocol creator |
+
+#### ActionType
+
+```solidity
+enum ActionType {
+    BUY_TOKEN,
+    SELL_TOKEN,
+    ADD_LIQUIDITY,
+    REMOVE_LIQUIDITY
+}
+```
+
+| Parameter         | Description                                      |
+| ----------------- | ------------------------------------------------ |
+| BUY\_TOKEN        | Action is the minting of ibAssets                |
+| SELL\_TOKEN       | Action is the burning of ibAssets                |
+| ADD\_LIQUIDITY    | Action is the adding of liquidity to the IBC     |
+| REMOVE\_LIQUIDITY | Action is the removing of liquidity from the IBC |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -230,132 +284,13 @@ Emitted when the protocol creator fee receival address is changed.&#x20;
 event FeeOwnerChanged(address feeOwner); 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter | Type    | Description                                 |
 | --------- | ------- | ------------------------------------------- |
 | feeOwner  | address | New address receiving protocol creator fees |
-
-
-
-## Constants
-
-```solidity
-uint256 constant MIN_INPUT_AMOUNT = 1e14; // 0.0001
-uint256 constant ONE_UINT = 1e18;
-uint256 constant LP_FEE_PERCENT = 25e14;
-uint256 constant STAKE_FEE_PERCENT = 25e14;
-uint256 constant PROTOCOL_FEE_PERCENT = 5e15;
-uint256 constant MAX_FEE_PERCENT = 1e17;
-uint256 constant ALLOWED_INVARIANT_CHANGE = 1e10;
-uint256 constant ALLOWED_INVARIANT_CHANGE_PERCENT = 1e12; //0.000001
-uint256 constant ALLOWED_UTILIZATION_CHANGE_PERCENT = 1e12; //0.000001
-
-uint256 constant DAILY_BLOCK_COUNT = 7200;
-
-uint8 constant MAX_ACTION_COUNT = 4;
-uint8 constant MAX_FEE_TYPE_COUNT = 3;
-uint8 constant MAX_FEE_STATE_FOR_USER_COUNT = 2;
-uint8 constant MAX_FEE_STATE_COUNT = 3;
-uint8 constant MAX_EMA_STATE_COUNT = 2;
-
-uint8 constant PREVIOUS_EMA_INDEX = 0;
-uint8 constant CURRENT_EMA_INDEX = 1;
-```
-
-| Parameter                             | Type    | Description                                                          |
-| ------------------------------------- | ------- | -------------------------------------------------------------------- |
-| MIN\_INPUT\_AMOUNT                    | uint256 | Minimum amonut of reserves that can be used to mint ibAssets         |
-| ONE\_UNIT                             | uint256 | 1                                                                    |
-| LP\_FEE\_PERCENT                      | uint256 | Portion of fees given to LPs                                         |
-| STAKE\_FEE\_PERCENT                   | uint256 | Portion of fees given to ibAsset stakers                             |
-| PROTOCOL\_FEE\_PERCENT                | uint256 | Portion of fees given to protocol creator                            |
-| MAX\_FEE\_PERCENT                     | uint256 | Maximum portion of fees that can be taken from interactions          |
-| ALLOWED\_INVARIANT\_CHANGE            | uint256 | Permitted change of invariant value from rounding errors             |
-| ALLOWED\_INVARIANT\_CHANGE\_PERCENT   | uint256 | Permitted change of invariant value from rounding errors             |
-| ALLOWED\_UTILIZATION\_CHANGE\_PERCENT | uint256 | Permitted change of liquidity utilization value from rounding errors |
-| DAILY\_BLOCK\_COUNT                   | uint256 | Number of blocks in 1 day                                            |
-| MAX\_ACTION\_COUNT                    | uint8   | Maximum number of fee accruer types permitted                        |
-| MAX\_FEE\_TYPE\_COUNT                 | uint8   | Maximum number of fee types permitted                                |
-| MAX\_EMA\_STATE\_COUNT                | uint8   | Maximum number of EMA value types permitted                          |
-| PREVIOUS\_EMA\_INDEX                  | uint8   |                                                                      |
-| CURRENT\_EMA\_INDEX                   | uint8   |                                                                      |
-
-
-
-## Contract State
-
-### `CurveParameter`
-
-Stores information about the variables of the IBC curve.&#x20;
-
-```solidity
-struct CurveParameter {
-    uint256 reserve;
-    uint256 supply;
-    uint256 lpSupply;
-    uint256 price;
-    uint256 parameterInvariant;
-    uint256 parameterUtilization;
-}
-```
-
-| Parameter            | Type    | Description                                  |
-| -------------------- | ------- | -------------------------------------------- |
-| reserve              | uint256 | Current amount of reserve assets in curve    |
-| supply               | uint256 | Current minted ibAsset supply                |
-| lpSupply             | uint256 | Current total LP token supply                |
-| price                | uint256 | Current spot price of ibAsset                |
-| parameterInvariant   | uint256 | Current invariant value of curve             |
-| parameterUtilization | uint256 | Current liquidity utilization value of curve |
-
-
-
-### `FeeState`
-
-Stores fee-related information.&#x20;
-
-```solidity
-Struct FeeState {
-    uint256 feeForFirstStaker;
-    mapping(address => uint256)[MAX_FEE_STATE_FOR_USER_COUNT] feeIndexStates;
-    mapping(address => uint256)[MAX_FEE_STATE_FOR_USER_COUNT] pendingRewards;
-    uint256[MAX_FEE_STATE_COUNT] globalFeeIndexes;
-    uint256[MAX_FEE_STATE_COUNT] totalReward;
-    uint256[MAX_FEE_STATE_COUNT] totalPendingReward;
-    uint256 emaRewardUpdateBlockNumber;
-    uint256[MAX_EMA_STATE_COUNT] emaReward;
-    uint256[MAX_EMA_STATE_COUNT] previousReward;
-}
-```
-
-| Parameter                  | Type                                                            | Description                                                               |
-| -------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| feeForFirstStaker          | uint256                                                         | Accumulated fees to be given to the first ibAsset staker                  |
-| feeIndexStates             | mapping(address => uint256)\[MAX\_FEE\_STATE\_FOR\_USER\_COUNT] | Mapping of user addresses to their fee index                              |
-| pendingRewards             | mapping(address => uint256)\[MAX\_FEE\_STATE\_FOR\_USER\_COUNT] | Mapping of user addresses to their accrued, but yet to be claimed rewards |
-| globalFeeIndexes           | uint256\[MAX\_FEE\_STATE\_COUNT]                                | Array of global fee indexes for each fee types                            |
-| totalReward                | uint256\[MAX\_FEE\_STATE\_COUNT]                                | Array of total accrued rewards for each fee types                         |
-| totalPendingReward         | uint256\[MAX\_FEE\_STATE\_COUNT]                                | Array of total accrued, but yet to be claimed rewards for each fee types  |
-| emaRewardUpdateBlockNumber | uint256                                                         | Block number when the EMA value was last updated                          |
-| emaReward                  | uint256\[MAX\_EMA\_STATE\_COUNT]                                | EMA-adjusted reward amounts per EMA type                                  |
-| previousReward             | uint256\[MAX\_EMA\_STATE\_COUNT]                                | Reward amount when EMA value was last updated per EMA type                |
-
-
-
-### `LpPosition`
-
-Stores information about a user's LP position.&#x20;
-
-```solidity
-struct LpPosition {
-    uint256 lpTokenAmount;
-    uint256 inverseTokenCredit;
-}
-```
-
-| Parameter          | Type    | Description                            |
-| ------------------ | ------- | -------------------------------------- |
-| lpTokenAmount      | uint256 | Amount of LP tokens owned by user      |
-| inverseTokenCredit | uint256 | Amount of ibAsset credit owned by user |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -373,11 +308,15 @@ function addLiquidity(
 ) external payable whenNotPaused 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter     | Type    | Description                                                                                  |
 | ------------- | ------- | -------------------------------------------------------------------------------------------- |
 | recipient     | address | Address to receive LP tokens                                                                 |
 | reserveIn     | uint256 | Amount of reserve assets provided for liquidity add                                          |
 | minPriceLimit | uint256 | Minimum ibAsset price to conduct LP - reverts if ibAsset price is lower than specified value |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -393,11 +332,15 @@ function removeLiquidity(
 ) external whenNotPaused 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter      | Type    | Description                                                                                   |
 | -------------- | ------- | --------------------------------------------------------------------------------------------- |
 | recipient      | address | Address to receive removed reserve assets                                                     |
 | inverseTokenIn | uint256 | Amount of additional ibAssets posted for LP removal                                           |
 | maxPriceLimit  | uint256 | Maximum ibAsset price to conduct LP - reverts if ibAsset price is higher than specified value |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -414,12 +357,16 @@ function buyTokens(
 ) external payable whenNotPaused 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter      | Type    | Description                                                                                              |
 | -------------- | ------- | -------------------------------------------------------------------------------------------------------- |
 | recipient      | address | Address to receive minted ibAssets                                                                       |
 | reserveIn      | uint256 | Amount of reserve assets provided for minting                                                            |
 | exactAmountOut | uint256 | Exact amount ibAssets to be minted                                                                       |
 | maxPriceLimit  | uint256 | Maximum effective ibAsset buy price to conduct buy - reverts if buy price is higher than specified value |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -435,11 +382,15 @@ function sellTokens(
 ) external whenNotPaused 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter      | Type    | Description                                                                                                |
 | -------------- | ------- | ---------------------------------------------------------------------------------------------------------- |
 | recipient      | address | Address to receive reserve assets                                                                          |
 | inverseTokenIn | uint256 | Amount of ibAssets to burn                                                                                 |
 | minPriceLimit  | uint256 | Minimum effective ibAsset sell price to conduct sell - reverts if sell price is lower than specified value |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -451,10 +402,14 @@ Stakes specified amount of ibAssets.&#x20;
 function stake(address recipient, uint256 amount) external whenNotPaused 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter | Type    | Description                         |
 | --------- | ------- | ----------------------------------- |
 | recipient | address | Address performing the stake action |
 | amount    | uint256 | Amount of ibAssets to stake         |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -466,10 +421,14 @@ Unstakes specified amount of ibAssets.&#x20;
 function unstake(address recipinet, uint256 amount) external whenNotPaused 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter | Type    | Description                           |
 | --------- | ------- | ------------------------------------- |
 | recipient | uint256 | Address performing the unstake action |
 | amount    | uint256 | Amount of ibAssets to unstake         |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -481,9 +440,13 @@ Claims accrued LP and staking rewards.&#x20;
 function claimReward(address recipient) external whenNotPaused 
 ```
 
+{% tabs %}
+{% tab title="Parameters" %}
 | Parameter | Type    | Description                         |
 | --------- | ------- | ----------------------------------- |
 | recipient | address | Address performing the claim action |
+{% endtab %}
+{% endtabs %}
 
 
 
@@ -763,7 +726,7 @@ function rewardState() external view returns (
 |           |      |             |
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="Return Values" %}
 | Parameter          | Type                                                            | Description                                        |
 | ------------------ | --------------------------------------------------------------- | -------------------------------------------------- |
 | totalReward        | uint256\[MAX\_FEE\_TYPE\_COUNT]\[MAX\_FEE\_STATE\_COUNT] memory | Total reward amount accrued                        |

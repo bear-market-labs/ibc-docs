@@ -6,6 +6,8 @@ Interactions with IBCs incur a fee which are then distributed to three entities,
 
 ## Minting
 
+A flat fee rate is taken from the minted ibAsset amount.&#x20;
+
 Fee denomination: ibAsset
 
 | Distributed To  | Fee Rate |
@@ -17,6 +19,8 @@ Fee denomination: ibAsset
 
 
 ## Burning
+
+A flat fee rate is taken from the returned reserve asset amount.&#x20;
 
 Fee denomination: ibAsset
 
@@ -30,6 +34,8 @@ Fee denomination: ibAsset
 
 ## Adding Liquidity
 
+A flat fee rate is taken from the added reserve asset amount.&#x20;
+
 Fee denomination: reserve asset
 
 | Distributed To  | Fee Rate |
@@ -41,6 +47,8 @@ Fee denomination: reserve asset
 
 
 ## Removing Liquidity
+
+A flat fee rate is taken from the removed reserve asset amount. Additionally if the LP is given ibAssets from their credit, a flat fee rate is also applied to this amount.&#x20;
 
 Fee denomination: reserve asset / ibAsset
 
