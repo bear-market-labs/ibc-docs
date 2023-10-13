@@ -15,7 +15,6 @@
 ## Smart Contracts
 
 * [Deployed Contracts](smart-contracts/deployed-contracts.md)
-* [InverseBondingCurve.sol](smart-contracts/inversebondingcurve.sol.md)
+* [Inverse Bonding Curve](smart-contracts/inverse-bonding-curve.md)
 * [IBC Factory](smart-contracts/ibc-factory.md)
 * [IBC Router](smart-contracts/ibc-router.md)
-* [ERC20](smart-contracts/erc20.md)
