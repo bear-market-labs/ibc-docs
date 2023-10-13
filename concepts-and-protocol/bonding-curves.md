@@ -24,7 +24,7 @@ Bonding curves are often visualized using a price-to-supply graph. For example, 
 
 The spot prices of assets and the amount of reserve assets required for their minting is all calculated based on the bonding curve, the amount of reserve assets required corresponding to the definite integral of the bonding curve from the supply prior to mint and to the supply following the mint (equivalent to the area below the bonding curve).&#x20;
 
-On the above example of `price=1/6 * supply^2` at a starting supply of 1, the minting of 2 tokens leads to a spot price increase from 0.1666... to 1.5, and consumes 1.444... amount of reserve assets.&#x20;
+On the above example of `price=1/6 * supply^2` at a starting supply of $$1$$, the minting of $$2$$ tokens leads to a spot price increase from $$0.166...$$ to $$1.5$$, and consumes $$1.444...$$ amount of reserve assets.&#x20;
 
 
 

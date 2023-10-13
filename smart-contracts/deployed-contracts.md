@@ -1,6 +1,10 @@
 # Deployed Contracts
 
-The smart contracts that constitute the inverse bonding curve protocol are deployed on the Ethereum blockchain, and can be found on the below networks:&#x20;
+The smart contracts that constitute the inverse bonding curve implementation are deployed on the Ethereum blockchain, and can be found on the below networks:&#x20;
+
+
+
+## Networks
 
 | Classification | Name             | Chain ID |
 | -------------- | ---------------- | -------- |
@@ -9,31 +13,45 @@ The smart contracts that constitute the inverse bonding curve protocol are deplo
 
 
 
+## Contract Addresses
+
 {% tabs %}
 {% tab title="Mainnet" %}
-| Name  | Address |
-| ----- | ------- |
-| Proxy | 0x...   |
-| Curve | 0x...   |
+#### Core IBC Contracts
 
-#### ERC20-compliant token contracts
+| Name              | Address |
+| ----------------- | ------- |
+| IBC Factory Proxy | 0x...   |
+| IBC Factory       | 0x...   |
+| IBC Router Proxy  | 0x...   |
+| IBC Router        | 0x...   |
 
-| Name | Address |
-| ---- | ------- |
-| IBC  | 0x...   |
+#### ibETH-Related Contracts
+
+| Name                            | Address |
+| ------------------------------- | ------- |
+| ibETH InverseBondingCurve Proxy | 0x...   |
+| ibETH InverseBondingCurve       | 0x...   |
+| ibETH (ERC20)                   | 0x...   |
 {% endtab %}
 
 {% tab title="Sepolia" %}
-| Name  | Address |
-| ----- | ------- |
-| Proxy | 0x...   |
-| Curve | 0x...   |
+#### Core IBC Contracts
 
-#### ERC20-compliant token contracts
+| Name              | Address |
+| ----------------- | ------- |
+| IBC Factory Proxy | 0x...   |
+| IBC Factory       | 0x...   |
+| IBC Router Proxy  | 0x...   |
+| IBC Router        | 0x...   |
 
-| Name | Address |
-| ---- | ------- |
-| IBC  | 0x...   |
+#### ibETH-Related Contracts
+
+| Name                            | Address |
+| ------------------------------- | ------- |
+| ibETH InverseBondingCurve Proxy | 0x...   |
+| ibETH InverseBondingCurve       | 0x...   |
+| ibETH (ERC20)                   | 0x...   |
 {% endtab %}
 {% endtabs %}
 

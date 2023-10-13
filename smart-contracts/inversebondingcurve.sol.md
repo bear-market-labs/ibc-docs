@@ -1,9 +1,7 @@
 # InverseBondingCurve.sol
 
-
-
 {% hint style="danger" %}
-Requires update
+Requires update -- not referencable at this stage.&#x20;
 {% endhint %}
 
 ### Events

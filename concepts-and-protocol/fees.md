@@ -1,52 +1,52 @@
 # Fees
 
-Interactions with the inverse bonding curve incur a fee which are then distributed to three entities, LPs, IBC stakers, and the protocol creator. The fee rates may differ based on the interaction type.
+Interactions with IBCs incur a fee which are then distributed to three entities, LPs, ibAsset stakers, and the protocol creator. The fee rates may differ based on the interaction type.
 
 
 
-### Minting
+## Minting
 
-Fee denomination: IBC
+Fee denomination: ibAsset
 
-| Distributed To | Fee Rate |
-| -------------- | -------- |
-| LPs            | 0.25%    |
-| IBC Stakers    | 0.25%    |
-| Protocol       | 0.5%     |
-
-
-
-### Burning
-
-Fee denomination: IBC
-
-| Distributed To | Fee Rate |
-| -------------- | -------- |
-| LPs            | 0.25%    |
-| IBC Stakers    | 0.25%    |
-| Protocol       | 0.5%     |
+| Distributed To  | Fee Rate |
+| --------------- | -------- |
+| LPs             | 0.25%    |
+| ibAsset Stakers | 0.25%    |
+| Protocol        | 0.5%     |
 
 
 
-### Adding Liquidity
+## Burning
 
-Fee denomination: ETH
+Fee denomination: ibAsset
 
-| Distributed To | Fee Rate |
-| -------------- | -------- |
-| LPs            | 0.25%    |
-| IBC Stakers    | 0.25%    |
-| Protocol       | 0.5%     |
+| Distributed To  | Fee Rate |
+| --------------- | -------- |
+| LPs             | 0.25%    |
+| ibAsset Stakers | 0.25%    |
+| Protocol        | 0.5%     |
 
 
 
-### Removing Liquidity
+## Adding Liquidity
 
-Fee denomination: ETH
+Fee denomination: reserve asset
 
-| Distributed To | Fee Rate |
-| -------------- | -------- |
-| LPs            | 0.25%    |
-| IBC Stakers    | 0.25%    |
-| Protocol       | 0.5%     |
+| Distributed To  | Fee Rate |
+| --------------- | -------- |
+| LPs             | 0.25%    |
+| ibAsset Stakers | 0.25%    |
+| Protocol        | 0.5%     |
+
+
+
+## Removing Liquidity
+
+Fee denomination: reserve asset / ibAsset
+
+| Distributed To  | Fee Rate |
+| --------------- | -------- |
+| LPs             | 0.25%    |
+| ibAsset Stakers | 0.25%    |
+| Protocol        | 0.5%     |
 
