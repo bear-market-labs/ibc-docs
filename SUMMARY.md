@@ -2,6 +2,14 @@
 
 * [The Inverse Bonding Curve](README.md)
 
+## Security
+
+* [Trust Security Audit Report](https://inversebondingcurve.com/audits)
+
+## Usecases
+
+* [Exponents](https://docs-staging.exponents.fi/)
+
 ## Concepts & Protocol
 
 * [Bonding Curves](concepts-and-protocol/bonding-curves.md)
