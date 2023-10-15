@@ -1,5 +1,11 @@
 # IBC Factory
 
+The IBC Factory contract acts as the deployer for new Inverse Bonding Curve contracts. Users can make a request to this contract to make new deployments of IBCs.&#x20;
+
+The IBC Factory maintains the full list of all deployed IBCs, made queryable by users.&#x20;
+
+
+
 ## Events
 
 ### ~~`Deployed`~~` ``CurveDeployed`
@@ -67,5 +73,29 @@ function getCurve(address reserveToken) public view returns (address)
 | Type    | Description                                                         |
 | ------- | ------------------------------------------------------------------- |
 | address | Contract address of the specified reserve asset's IBC implemenation |
+{% endtab %}
+{% endtabs %}
+
+
+
+### ~~`poolLength`~~` ``getAllCurvesLength`
+
+Gets the total number of IBC curves created through the IBC factory so far.&#x20;
+
+```solidity
+function getAllCurvesLength() public view returns(uint256)
+```
+
+{% tabs %}
+{% tab title="Parameters" %}
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+|           |      |             |
+{% endtab %}
+
+{% tab title="Return Values" %}
+| Type    | Description                                   |
+| ------- | --------------------------------------------- |
+| uint256 | Total number of IBC curves created by Factory |
 {% endtab %}
 {% endtabs %}

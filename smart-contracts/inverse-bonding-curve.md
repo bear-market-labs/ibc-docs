@@ -4,6 +4,12 @@
 Requires a future update as contracts are yet to be finalized --- not highly dependable
 {% endhint %}
 
+The Inverse Bonding Curve contract is responsible for handling mints and burns of ibAssets. The contract stores the balance of the relevant reserve assets, used for the mints and burns.&#x20;
+
+A Inverse Bonding Curve contract is deployed per ibAsset type. New Inverse Bonding Curve contracts are deployed through the [IBC Factory](ibc-factory.md) contract.&#x20;
+
+
+
 ## Events
 
 ### `CurveInitialized`
@@ -13,24 +19,24 @@ Emitted at inverse bonding curve initialization.&#x20;
 ```solidity
 event CurveInitialized(
     address indexed from,
+    address indexed reserveTokenAddress
     uint256 reserve,
     uint256 supply,
     uint256 initialPrice,
-    uint256 parameterUtilization,
     uint256 parameterInvariant
 );
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter            | Type    | Description                                     |
-| -------------------- | ------- | ----------------------------------------------- |
-| from\*               | address | Address of initializer                          |
-| reserve              | uint256 | Reserve value at initialization                 |
-| supply               | uint256 | Supply value at initialization                  |
-| initialPrice         | uint256 | ibAsset price at initialization                 |
-| parameterUtilization | uint256 | Liquidity reserve utilization at initialization |
-| parameterInvariant   | uint256 | Curve invariant at initialization               |
+| Parameter             | Type    | Description                       |
+| --------------------- | ------- | --------------------------------- |
+| from\*                | address | Address of initializer            |
+| reserveTokenAddress\* | address | Contract address of reserve asset |
+| reserve               | uint256 | Reserve value at initialization   |
+| supply                | uint256 | Supply value at initialization    |
+| initialPrice          | uint256 | ibAsset price at initialization   |
+| parameterInvariant    | uint256 | Curve invariant at initialization |
 
 \* = indexable
 {% endtab %}
@@ -48,21 +54,19 @@ event LiquidityAdded(
     address indexed recipient, 
     uint256 amountIn, 
     uint256 amountOut, 
-    uint256 newParameterUtilization, 
     uint256 newParameterInvariant
 ); 
 ```
 
 {% tabs %}
 {% tab title="First Tab" %}
-| Parameter               | Type    | Description                                     |
-| ----------------------- | ------- | ----------------------------------------------- |
-| from\*                  | address | Address of LP                                   |
-| recipient\*             | address | Address that received minted LP tokens          |
-| amountIn                | uint256 | Amount of reserve assets added                  |
-| amountOut               | uint256 | Amount of LP tokens minted                      |
-| newParameterUtilization | uint256 | Liquidity reserve utilization after LP addition |
-| newParameterInvariant   | uint256 | Curve invariant after LP addition               |
+| Parameter             | Type    | Description                            |
+| --------------------- | ------- | -------------------------------------- |
+| from\*                | address | Address of LP                          |
+| recipient\*           | address | Address that received minted LP tokens |
+| amountIn              | uint256 | Amount of reserve assets added         |
+| amountOut             | uint256 | Amount of LP tokens minted             |
+| newParameterInvariant | uint256 | Curve invariant after LP addition      |
 
 \* = indexable
 {% endtab %}
@@ -82,23 +86,21 @@ event LiquidityRemoved(
     uint256 reserveAmountOut, 
     uint256 inverseTokenCredit, 
     uint256 inverseTokenBurned, 
-    uint256 newParameterUtilization, 
     uint256 newParameterInvariant
 ); 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter               | Type    | Description                                    |
-| ----------------------- | ------- | ---------------------------------------------- |
-| from\*                  | address | Address of LP                                  |
-| recipient\*             | address | Address that received removed reserves         |
-| amountIn                | uint256 | Amount of LP tokens burnt                      |
-| reserveAmountOut        | uint256 | Amount of reserve assets withdrawn             |
-| inverseTokenCredit      | uint256 | ibAsset credit of LP prior to removal          |
-| inverseTokenBurned      | uint256 | Amount of ibAssets burnt                       |
-| newParameterUtilization | uint256 | Liquidity reserve utilization after LP removal |
-| newParameterInvariant   | uint256 | Curve invariant after LP removal               |
+| Parameter             | Type    | Description                            |
+| --------------------- | ------- | -------------------------------------- |
+| from\*                | address | Address of LP                          |
+| recipient\*           | address | Address that received removed reserves |
+| amountIn              | uint256 | Amount of LP tokens burnt              |
+| reserveAmountOut      | uint256 | Amount of reserve assets withdrawn     |
+| inverseTokenCredit    | uint256 | ibAsset credit of LP prior to removal  |
+| inverseTokenBurned    | uint256 | Amount of ibAssets burnt               |
+| newParameterInvariant | uint256 | Curve invariant after LP removal       |
 
 \* = indexable
 {% endtab %}
@@ -227,68 +229,6 @@ event RewardClaimed(
 | reserveAmount      | uint256 | Amount of rewards in reserve assets |
 
 \* = indexable
-{% endtab %}
-{% endtabs %}
-
-
-
-### `FeeConfigChanged`
-
-Emitted when fee configurations have been changed by the contract owner.&#x20;
-
-```solidity
-event FeeConfigChanged(
-    ActionType actionType, 
-    uint256 lpFee, 
-    uint256 stakingFee, 
-    uint256 protocolFee
-); 
-```
-
-{% tabs %}
-{% tab title="Parameters" %}
-| Parameter   | Type       | Description                            |
-| ----------- | ---------- | -------------------------------------- |
-| actionType  | ActionType | Type of user action                    |
-| lpFee       | uint256    | Rate of fees given to LPs              |
-| stakingFee  | uint256    | Rate of fees given to ibAsset stakers  |
-| protocolFee | uint256    | Rate of fees given to protocol creator |
-
-#### ActionType
-
-```solidity
-enum ActionType {
-    BUY_TOKEN,
-    SELL_TOKEN,
-    ADD_LIQUIDITY,
-    REMOVE_LIQUIDITY
-}
-```
-
-| Parameter         | Description                                      |
-| ----------------- | ------------------------------------------------ |
-| BUY\_TOKEN        | Action is the minting of ibAssets                |
-| SELL\_TOKEN       | Action is the burning of ibAssets                |
-| ADD\_LIQUIDITY    | Action is the adding of liquidity to the IBC     |
-| REMOVE\_LIQUIDITY | Action is the removing of liquidity from the IBC |
-{% endtab %}
-{% endtabs %}
-
-
-
-### `FeeOwnerChanged`
-
-Emitted when the protocol creator fee receival address is changed.&#x20;
-
-```solidity
-event FeeOwnerChanged(address feeOwner); 
-```
-
-{% tabs %}
-{% tab title="Parameters" %}
-| Parameter | Type    | Description                                 |
-| --------- | ------- | ------------------------------------------- |
-| feeOwner  | address | New address receiving protocol creator fees |
 {% endtab %}
 {% endtabs %}
 
@@ -480,6 +420,30 @@ function liquidityPositionOf(address account) external view returns (
 
 
 
+### `stakingBalanceOf`
+
+Gets the staked ibAsset amount for the specified address.&#x20;
+
+```solidity
+function stakingBalanceOf(address account) external view returns (uint256) 
+```
+
+{% tabs %}
+{% tab title="Parameters" %}
+| Parameter | Type    | Description                                      |
+| --------- | ------- | ------------------------------------------------ |
+| account   | address | Address of holder to get ibAsset staking balance |
+{% endtab %}
+
+{% tab title="Return Values" %}
+| Type    | Description               |
+| ------- | ------------------------- |
+| uint256 | Amount of staked ibAssets |
+{% endtab %}
+{% endtabs %}
+
+
+
 ### `inverseTokenAddress`
 
 Gets the contract address of the relevant ibAsset token contract.&#x20;
@@ -499,6 +463,30 @@ function inverseTokenAddress() external view returns (address)
 | Type    | Description                                             |
 | ------- | ------------------------------------------------------- |
 | address | Contract address of the relevant ibAsset token contract |
+{% endtab %}
+{% endtabs %}
+
+
+
+### `reserveTokenAddress`
+
+Gets the contract address of the relevant reserve asset token contract.&#x20;
+
+```solidity
+function reserveTokenAddress() external view returns (address)
+```
+
+{% tabs %}
+{% tab title="Parameters" %}
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+|           |      |             |
+{% endtab %}
+
+{% tab title="Return Values" %}
+| Type    | Description                                                   |
+| ------- | ------------------------------------------------------------- |
+| address | Contract address of the relevant reserve asset token contract |
 {% endtab %}
 {% endtabs %}
 
@@ -533,72 +521,16 @@ struct CurveParameter {
     uint256 lpSupply; 
     uint256 price;
     uint256 parameterInvariant;
-    uint256 parameterUtilization;
 }
 ```
 
-| Parameter            | Type    | Description                                    |
-| -------------------- | ------- | ---------------------------------------------- |
-| reserve              | uint256 | Liquidity reserve of curve                     |
-| supply               | uint256 | ibAsset minted supply                          |
-| lpSupply             | uint256 | Current total supply of LP tokens              |
-| price                | uint256 | Current spot price of ibAsset                  |
-| parameterInvariant   | uint256 | Current curve invariant of curve               |
-| parameterUtilization | uint256 | Current liquidity reserve utilization of curve |
-{% endtab %}
-{% endtabs %}
-
-
-
-### `feeConfig`
-
-Gets the fee configurations of inverse bonding curve interactions.&#x20;
-
-```solidity
-function feeConfig() external view returns (
-    uint256[MAX_ACTION_COUNT] memory lpFee, 
-    uint256[MAX_ACTION_COUNT] memory stakingFee, 
-    uint256[MAX_ACTION_COUNT] memory protocolFee
-) 
-```
-
-{% tabs %}
-{% tab title="Parameters" %}
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-|           |      |             |
-{% endtab %}
-
-{% tab title="Return Values" %}
-| Parameter   | Type                                | Description                                             |
-| ----------- | ----------------------------------- | ------------------------------------------------------- |
-| lpFee       | uint256\[MAX\_ACTION\_COUNT] memory | Fee rate given to LPs for user action type              |
-| stakingFee  | uint256\[MAX\_ACTION\_COUNT] memory | Fee rate given to ibAsset stakers for user action type  |
-| protocolFee | uint256\[MAX\_ACTION\_COUNT] memory | Fee rate given to protocol creator for user action type |
-{% endtab %}
-{% endtabs %}
-
-
-
-### `feeOwner`
-
-Gets the address receiving protocol creator fees.&#x20;
-
-```solidity
-function feeOwner() external view returns (address) 
-```
-
-{% tabs %}
-{% tab title="Parameters" %}
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-|           |      |             |
-{% endtab %}
-
-{% tab title="Return Values" %}
-| Type    | Description                             |
-| ------- | --------------------------------------- |
-| address | Address receiving protocol creator fees |
+| Parameter          | Type    | Description                       |
+| ------------------ | ------- | --------------------------------- |
+| reserve            | uint256 | Liquidity reserve of curve        |
+| supply             | uint256 | ibAsset minted supply             |
+| lpSupply           | uint256 | Current total supply of LP tokens |
+| price              | uint256 | Current spot price of ibAsset     |
+| parameterInvariant | uint256 | Current curve invariant of curve  |
 {% endtab %}
 {% endtabs %}
 
@@ -614,7 +546,7 @@ function rewardOf(address recipient) external view returns (
     uint256 inverseTokenForStaking, 
     uint256 reserveForLp, 
     uint256 reserveForStaking, 
-) 
+)
 ```
 
 {% tabs %}
@@ -659,6 +591,30 @@ function rewardOfProtocol() external view returns (
 | ------------------ | ------- | ------------------------------------------------- |
 | inverseTokenReward | uint256 | Accrued ibAsset rewards to protocol creator       |
 | reserveReward      | uint256 | Accrued reserve asset rewards to protocol creator |
+{% endtab %}
+{% endtabs %}
+
+
+
+### `totalStaked`
+
+Gets the total staked ibAsset amount.&#x20;
+
+```solidity
+function totalStaked() external view returns (uint256)
+```
+
+{% tabs %}
+{% tab title="Parameters" %}
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+|           |      |             |
+{% endtab %}
+
+{% tab title="Return Values" %}
+| Type    | Description                     |
+| ------- | ------------------------------- |
+| uint256 | Total amount of staked ibAssets |
 {% endtab %}
 {% endtabs %}
 
@@ -736,30 +692,6 @@ function rewardState() external view returns (
 
 
 
-### `stakingBalanceOf`
-
-Gets the staked ibAsset amount for the specified address.&#x20;
-
-```solidity
-function stakingBalanceOf(address holder) external view returns (uint256) 
-```
-
-{% tabs %}
-{% tab title="Parameters" %}
-| Parameter | Type    | Description                                      |
-| --------- | ------- | ------------------------------------------------ |
-| holder    | address | Address of holder to get ibAsset staking balance |
-{% endtab %}
-
-{% tab title="Return Values" %}
-| Type    | Description               |
-| ------- | ------------------------- |
-| uint256 | Amount of staked ibAssets |
-{% endtab %}
-{% endtabs %}
-
-
-
 ### `getImplementation`
 
 Gets the address of the implemenation contract.&#x20;
@@ -782,26 +714,3 @@ function getImplementation() external view returns (address)
 {% endtab %}
 {% endtabs %}
 
-
-
-### `totalStaked`
-
-Gets the total staked ibAsset amount.&#x20;
-
-```solidity
-function totalStaked() external view returns (uint256) 
-```
-
-{% tabs %}
-{% tab title="Parameters" %}
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-|           |      |             |
-{% endtab %}
-
-{% tab title="Return Values" %}
-| Type    | Description                     |
-| ------- | ------------------------------- |
-| uint256 | Total amount of staked ibAssets |
-{% endtab %}
-{% endtabs %}

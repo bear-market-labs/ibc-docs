@@ -23,8 +23,8 @@ The smart contracts that constitute the inverse bonding curve implementation are
 | ----------------- | ------- |
 | IBC Factory Proxy | 0x...   |
 | IBC Factory       | 0x...   |
-| IBC Router Proxy  | 0x...   |
 | IBC Router        | 0x...   |
+| IBC Admin         | 0x...   |
 
 #### ibETH-Related Contracts
 
@@ -42,8 +42,8 @@ The smart contracts that constitute the inverse bonding curve implementation are
 | ----------------- | ------- |
 | IBC Factory Proxy | 0x...   |
 | IBC Factory       | 0x...   |
-| IBC Router Proxy  | 0x...   |
 | IBC Router        | 0x...   |
+| IBC Admin         | 0x...   |
 
 #### ibETH-Related Contracts
 

@@ -1,8 +1,6 @@
 # IBC Router
 
-## Events
-
-
+The IBC Router contract is the point of interaction for most users of IBCs. This contract routes IBC interactions to contracts of the relevant reserve asset and ibAsset.&#x20;
 
 
 
@@ -51,8 +49,3 @@ enum CommandType {
 | CLAIM\_REWARD     | Command is to claim LP & ibAsset staking rewards |
 {% endtab %}
 {% endtabs %}
-
-
-
-## Read-Only Functions
-

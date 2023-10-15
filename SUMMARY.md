@@ -4,11 +4,11 @@
 
 ## Security
 
-* [Trust Security Audit Report](https://inversebondingcurve.com/audits)
+* [Trust Security Audit Report](http://bearmarketlabs.xyz/)
 
 ## Usecases
 
-* [Exponents](https://docs-staging.exponents.fi/)
+* [Exponents](https://docsend.com/view/jj3pb9qawixqtws9)
 
 ## Concepts & Protocol
 
@@ -26,3 +26,4 @@
 * [Inverse Bonding Curve](smart-contracts/inverse-bonding-curve.md)
 * [IBC Factory](smart-contracts/ibc-factory.md)
 * [IBC Router](smart-contracts/ibc-router.md)
+* [IBC Admin](smart-contracts/ibc-admin.md)
