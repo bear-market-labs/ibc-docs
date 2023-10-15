@@ -90,7 +90,7 @@ $$
 i=\frac{R}{S^{u}}
 $$
 
-$$u$$ represents the utilization of provided liquidity vs. liquidity used to back minted ibAssets at the current spot price. Similar to $$i$$, $$u$$ does not update during mints and burns, but updates with LP additions and withdrawals. $$u$$ is defined as:&#x20;
+$$u$$ represents the utilization of provided liquidity vs. liquidity used to back minted ibAssets at the current spot price. $$u$$ is defined at curve initialization and is made to never update. $$u$$ is defined as:&#x20;
 
 $$
 u=\frac{PS}{R}=0.5
