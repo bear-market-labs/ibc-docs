@@ -65,7 +65,15 @@ To retain the same liquidity utilization value pre and post LP, as reserve asset
 
 ### Reward Index
 
-The reward index of a position is used to track how much LP rewards the position has available for claim. This value is updated every time the LP claims their LP rewards.&#x20;
+The reward index of a position is used to track how much LP rewards the position has available for claim. Two reward indexes exist, one a global value and the other a user-specific value. The global index value is updated every time the rewards are distributed to all relevant users, tracking the amount of rewards distributed per LP token amount since protocol genesis.&#x20;
+
+During a reward claim, the accrued reward amount of an LP is calculated as:&#x20;
+
+$$
+rewardAmount=\left(globalRewardIndex - userRewardIndex\right)\times lpTokenAmount
+$$
+
+After which the user-specific index updates to the current global index value.&#x20;
 
 
 
