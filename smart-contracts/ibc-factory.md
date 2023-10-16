@@ -78,12 +78,12 @@ function getCurve(address reserveToken) public view returns (address)
 
 
 
-### ~~`poolLength`~~` ``getAllCurvesLength`
+### ~~`poolLength`~~` ``allCurvesLength`
 
 Gets the total number of IBC curves created through the IBC factory so far.&#x20;
 
 ```solidity
-function getAllCurvesLength() public view returns(uint256)
+function allCurvesLength() public view returns(uint256)
 ```
 
 {% tabs %}

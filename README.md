@@ -12,7 +12,7 @@ The purpose of the inverse bonding curve implementation is to increase awareness
 
 ## Basic Protocol Functions
 
-Three participant types power the inverse bonding curve implementation: ibAsset Minters / Stakers and Liquidity Providers (LPs), and Curve Initializers. ibAssets (e.g. ibETH) can be minted by providing reserve assets (e.g. ETH) to the inverse bonding curve, from which new ibAssets are minted into existence and given to the minter. LPs can provide additional reserve assets to improve the market liquidity of the inverse bonding curve.&#x20;
+Three participant types power the inverse bonding curve implementation: ibAsset Minters / Stakers, Liquidity Providers (LPs), and Curve Initializers. ibAssets (e.g. ibETH) can be minted by providing reserve assets (e.g. ETH) to the inverse bonding curve, from which new ibAssets are minted into existence and given to the minter. LPs can provide additional reserve assets to improve the market liquidity of the inverse bonding curve.&#x20;
 
 New ibAsset types can be created for an ERC20 reserve asset of choice. Curve Initializers specify the reserve asset to be used, providing the initial reserve amounts to generate a new inverse bonding curve & ibAsset pair. Initializations are permissionless and can be executed by anyone.&#x20;
 

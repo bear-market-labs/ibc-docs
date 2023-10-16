@@ -10,7 +10,7 @@ The provided initial parameter values of initial liquidity reserves ($$R_0$$) is
 
 ## Initial Parameters
 
-The curve initializes to contain the provided $$R_0$$ amount of liquidity reserves. The generated IBC starts of with a price curve equation of:&#x20;
+The curve initializes to contain the provided $$R_0$$ amount of liquidity reserves. The generated IBC starts off with a price curve equation of:&#x20;
 
 $$
 price=\frac{1}{\sqrt{supply}}
