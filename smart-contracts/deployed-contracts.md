@@ -19,12 +19,11 @@ The smart contracts that constitute the inverse bonding curve implementation are
 {% tab title="Mainnet" %}
 #### Core IBC Contracts
 
-| Name              | Address |
-| ----------------- | ------- |
-| IBC Factory Proxy | 0x...   |
-| IBC Factory       | 0x...   |
-| IBC Router        | 0x...   |
-| IBC Admin         | 0x...   |
+| Name        | Address |
+| ----------- | ------- |
+| IBC Factory | 0x...   |
+| IBC Router  | 0x...   |
+| IBC Admin   | 0x...   |
 
 #### ibETH-Related Contracts
 
@@ -38,12 +37,11 @@ The smart contracts that constitute the inverse bonding curve implementation are
 {% tab title="Sepolia" %}
 #### Core IBC Contracts
 
-| Name              | Address |
-| ----------------- | ------- |
-| IBC Factory Proxy | 0x...   |
-| IBC Factory       | 0x...   |
-| IBC Router        | 0x...   |
-| IBC Admin         | 0x...   |
+| Name        | Address |
+| ----------- | ------- |
+| IBC Factory | 0x...   |
+| IBC Router  | 0x...   |
+| IBC Admin   | 0x...   |
 
 #### ibETH-Related Contracts
 
