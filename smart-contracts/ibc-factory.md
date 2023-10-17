@@ -8,7 +8,7 @@ The IBC Factory maintains the full list of all deployed IBCs, made queryable by 
 
 ## Events
 
-### ~~`Deployed`~~` ``CurveDeployed`
+### `CurveDeployed`
 
 Emitted at IBC contract deployment for the specified reserve asset.&#x20;
 
@@ -30,7 +30,7 @@ event CurveDeployed(address curveContract, address tokenContract, address proxyC
 
 ## State-Changing Functions
 
-### ~~`CreatePool`~~` ``CreateCurve`
+### `CreateCurve`
 
 Deploys a new IBC implementation, its proxy contract, and the relevant ibAsset token contract for the specified reserve asset.&#x20;
 
@@ -54,7 +54,7 @@ function createCurve(
 
 ## Read-Only Functions
 
-### ~~`getPool`~~` ``getCurve`
+### `getCurve`
 
 Gets the contract address of the specified reserve asset's IBC implementation.&#x20;
 
@@ -78,7 +78,7 @@ function getCurve(address reserveToken) public view returns (address)
 
 
 
-### ~~`poolLength`~~` ``allCurvesLength`
+### `allCurvesLength`
 
 Gets the total number of IBC curves created through the IBC factory so far.&#x20;
 
