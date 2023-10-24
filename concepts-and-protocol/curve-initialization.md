@@ -34,7 +34,7 @@ $$
 
 ### Minimum Initial Reserve
 
-A minimum amount of initial reserves is enforced, preventing rounding errors during further interactions. The minimum initial reserve is set as $$0.0002$$ reserve assets for all initializing IBCs. The minimum initial reserve is made non-withdrawable and is locked in the IBC eternally.
+A minimum amount of initial reserves is enforced, preventing rounding errors during further interactions. The minimum initial reserve is set as $$0.0002$$ reserve assets for all initializing IBCs. Furthermore, a small reserve amount from the minimum initial reserve is deducted away and made non-withdrawable and is locked in the IBC eternally in order to prevent further rounding errors and disallow the reserve being drained to zero.
 
 
 
@@ -48,7 +48,7 @@ $$
 
 Which is equal to the initial price, times the specified amount of virtual reserves minus the amount of virtual reserves that would be needed to fully back the initial virtual minted supply at the initial price.&#x20;
 
-The LP token amount minted for the minimum initial reserve is also made non-removable, preventing potential rounding errors.&#x20;
+The LP token amount minted for a small deduction of the minimum initial reserve is also made non-removable, preventing potential rounding errors and total drainage of the reserve.&#x20;
 
 
 
