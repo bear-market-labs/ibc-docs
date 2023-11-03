@@ -68,6 +68,44 @@ event FeeOwnerChanged(address feeOwner);
 
 
 
+
+
+### `RouterChanged`
+
+Emitted when the IBC Router contract is changed.&#x20;
+
+```solidity
+event RouterChanged(address router); 
+```
+
+{% tabs %}
+{% tab title="Parameter" %}
+| Parameter | Type    | Description                        |
+| --------- | ------- | ---------------------------------- |
+| router    | address | Address of new IBC Router contract |
+{% endtab %}
+{% endtabs %}
+
+
+
+### `CurveImplementationChanged`
+
+Emitted when the IBC contract implementation is changed.&#x20;
+
+```solidity
+event CurveImplementationChanged(address implementation); 
+```
+
+{% tabs %}
+{% tab title="Parameter" %}
+| Parameter      | Type    | Description                                |
+| -------------- | ------- | ------------------------------------------ |
+| implementation | address | Address of new IBC contract implementation |
+{% endtab %}
+{% endtabs %}
+
+
+
 ## Read-Only Functions
 
 ### `feeConfig`
@@ -84,9 +122,27 @@ function feeConfig(ActionType actionType) external view returns (
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-|           |      |             |
+| Parameter  | Type       | Description         |
+| ---------- | ---------- | ------------------- |
+| actionType | ActionType | Type of user action |
+
+#### ActionType
+
+```solidity
+enum ActionType {
+    BUY_TOKEN,
+    SELL_TOKEN,
+    ADD_LIQUIDITY,
+    REMOVE_LIQUIDITY
+}
+```
+
+| Parameter         | Description                                      |
+| ----------------- | ------------------------------------------------ |
+| BUY\_TOKEN        | Action is the minting of ibAssets                |
+| SELL\_TOKEN       | Action is the burning of ibAssets                |
+| ADD\_LIQUIDITY    | Action is the adding of liquidity to the IBC     |
+| REMOVE\_LIQUIDITY | Action is the removing of liquidity from the IBC |
 {% endtab %}
 
 {% tab title="Return Values" %}
@@ -95,6 +151,30 @@ function feeConfig(ActionType actionType) external view returns (
 | lpFee       | uint256 | Fee rate given to LPs for user action type              |
 | stakingFee  | uint256 | Fee rate given to ibAsset stakers for user action type  |
 | protocolFee | uint256 | Fee rate given to protocol creator for user action type |
+{% endtab %}
+{% endtabs %}
+
+
+
+### `factoryAddress`
+
+Gets the contract address of the IBC Factory contract.&#x20;
+
+```solidity
+function factoryAddress() external view returns (address)
+```
+
+{% tabs %}
+{% tab title="Parameters" %}
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+|           |      |             |
+{% endtab %}
+
+{% tab title="Return Values" %}
+| Type    | Description                                  |
+| ------- | -------------------------------------------- |
+| address | Contract address of the IBC Factory contract |
 {% endtab %}
 {% endtabs %}
 
@@ -188,8 +268,8 @@ function curveImplementation() external view returns (address)
 {% endtab %}
 
 {% tab title="Return Values" %}
-| Type    | Description                                         |
-| ------- | --------------------------------------------------- |
-| address | Contract address of the IBC implementation contract |
+| Type    | Description                       |
+| ------- | --------------------------------- |
+| address | Address of the IBC implementation |
 {% endtab %}
 {% endtabs %}

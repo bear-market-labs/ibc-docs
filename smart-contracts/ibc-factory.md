@@ -2,27 +2,33 @@
 
 The IBC Factory contract acts as the deployer for new Inverse Bonding Curve contracts. Users can make a request to this contract to make new deployments of IBCs.&#x20;
 
-The IBC Factory maintains the full list of all deployed IBCs, made queryable by users.&#x20;
+The IBC Factory maintains the full list of all deployed IBCs (`curves`), made queryable by users.&#x20;
 
 
 
 ## Events
 
-### `CurveDeployed`
+### `CurveCreated`
 
-Emitted at IBC contract deployment for the specified reserve asset.&#x20;
+Emitted at IBC contract creation for the specified reserve asset.&#x20;
 
 ```solidity
-event CurveDeployed(address curveContract, address tokenContract, address proxyContract);
+event CurveCreated(
+    address curveContract, 
+    address tokenContract, 
+    address proxyContract, 
+    uint256 initialReserve
+);
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter     | Type    | Description                                |
-| ------------- | ------- | ------------------------------------------ |
-| curveContract | address | Contract address of IBC implementation     |
-| tokenContract | address | Contract address of ibAsset token contract |
-| proxyContract | address | Contract address of IBC proxy contract     |
+| Parameter      | Type    | Description                                |
+| -------------- | ------- | ------------------------------------------ |
+| curveContract  | address | Contract address of IBC implementation     |
+| tokenContract  | address | Contract address of ibAsset token contract |
+| proxyContract  | address | Contract address of IBC proxy contract     |
+| initialReserve | uint256 | Initial reserve amount of curve            |
 {% endtab %}
 {% endtabs %}
 
@@ -37,7 +43,8 @@ Deploys a new IBC implementation, its proxy contract, and the relevant ibAsset t
 ```solidity
 function createCurve(
     uint256 initialReserves, 
-    uint256 reserveTokenAddress
+    address reserveTokenAddress, 
+    address recipient
 ) external payable
 ```
 
@@ -47,6 +54,7 @@ function createCurve(
 | ------------------- | ------- | ---------------------------------------------------- |
 | initialReserves     | uint256 | Amount of initial reserves to supply to curve        |
 | reserveTokenAddress | address | Contract address of the reserve asset token contract |
+| recipient           | address | Address to receive initial LP position               |
 {% endtab %}
 {% endtabs %}
 
@@ -83,7 +91,7 @@ function getCurve(address reserveToken) public view returns (address)
 Gets the total number of IBC curves created through the IBC factory so far.&#x20;
 
 ```solidity
-function allCurvesLength() public view returns(uint256)
+function allCurvesLength() public view returns (uint256)
 ```
 
 {% tabs %}

@@ -1,9 +1,5 @@
 # Inverse Bonding Curve
 
-{% hint style="danger" %}
-Requires a future update as contracts are yet to be finalized --- not highly dependable
-{% endhint %}
-
 The Inverse Bonding Curve contract is responsible for handling mints and burns of ibAssets. The contract stores the balance of the relevant reserve assets, used for the mints and burns.&#x20;
 
 A Inverse Bonding Curve contract is deployed per ibAsset type. New Inverse Bonding Curve contracts are deployed through the [IBC Factory](ibc-factory.md) contract.&#x20;
@@ -113,15 +109,20 @@ event LiquidityRemoved(
 Emitted when ibAssets are staked.&#x20;
 
 ```solidity
-event TokenStaked(address indexed from, uint256 amount); 
+event TokenStaked(
+    address indexed from, 
+    address indexed recipient, 
+    uint256 amount
+); 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter | Type    | Description       |
-| --------- | ------- | ----------------- |
-| from\*    | address | Address of staker |
-| amount    | uint256 | Stake amount      |
+| Parameter   | Type    | Description                  |
+| ----------- | ------- | ---------------------------- |
+| from\*      | address | Address of staker            |
+| recipient\* | address | Address to stake ibAssets to |
+| amount      | uint256 | Stake amount                 |
 
 \* = indexable
 {% endtab %}
@@ -134,15 +135,20 @@ event TokenStaked(address indexed from, uint256 amount);
 Emitted when ibAssets are unstaked.&#x20;
 
 ```solidity
-event TokenUnstaked(address indexed from, uint256 amount); 
+event TokenUnstaked(
+    address indexed from, 
+    address indexed recipient, 
+    uint256 amount
+); 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter | Type    | Description         |
-| --------- | ------- | ------------------- |
-| from\*    | address | Address of unstaker |
-| amount    | uint256 | Unstake amount      |
+| Parameter   | Type    | Description                          |
+| ----------- | ------- | ------------------------------------ |
+| from\*      | address | Address of unstaker                  |
+| recipient\* | address | Address to receive unstaked ibAssets |
+| amount      | uint256 | Unstake amount                       |
 
 \* = indexable
 {% endtab %}
@@ -244,17 +250,17 @@ Adds liquidity reserves to the inverse bonding curve.&#x20;
 function addLiquidity(
     address recipient, 
     uint256 reserveIn, 
-    uint256 minPriceLimit
-) external payable whenNotPaused 
+    uint256[2] memory priceLimits
+) external whenNotPaused 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter     | Type    | Description                                                                                  |
-| ------------- | ------- | -------------------------------------------------------------------------------------------- |
-| recipient     | address | Address to receive LP tokens                                                                 |
-| reserveIn     | uint256 | Amount of reserve assets provided for liquidity add                                          |
-| minPriceLimit | uint256 | Minimum ibAsset price to conduct LP - reverts if ibAsset price is lower than specified value |
+| Parameter   | Type        | Description                                                                                                          |
+| ----------- | ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| recipient   | address     | Address to receive LP tokens                                                                                         |
+| reserveIn   | uint256     | Amount of reserve assets provided for liquidity add                                                                  |
+| priceLimits | uint256\[2] | Minimum and maximum ibAsset prices to conduct LP - reverts if ibAsset price is lower or higher than specified values |
 {% endtab %}
 {% endtabs %}
 
@@ -268,17 +274,17 @@ Removes liquidity reserves from the inverse bonding curve.&#x20;
 function removeLiquidity(
     address recipient, 
     uint256 inverseTokenIn, 
-    uint256 maxPriceLimit
+    uint256[2] memory priceLimits
 ) external whenNotPaused 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter      | Type    | Description                                                                                   |
-| -------------- | ------- | --------------------------------------------------------------------------------------------- |
-| recipient      | address | Address to receive removed reserve assets                                                     |
-| inverseTokenIn | uint256 | Amount of additional ibAssets posted for LP removal                                           |
-| maxPriceLimit  | uint256 | Maximum ibAsset price to conduct LP - reverts if ibAsset price is higher than specified value |
+| Parameter      | Type        | Description                                                                                                          |
+| -------------- | ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| recipient      | address     | Address to receive removed reserve assets                                                                            |
+| inverseTokenIn | uint256     | Amount of additional ibAssets posted for LP removal                                                                  |
+| priceLimits    | uint256\[2] | Minimum and maximum ibAsset prices to conduct LP - reverts if ibAsset price is lower or higher than specified values |
 {% endtab %}
 {% endtabs %}
 
@@ -293,18 +299,20 @@ function buyTokens(
     address recipient, 
     uint256 reserveIn, 
     uint256 exactAmountOut, 
-    uint256 maxPriceLimit
-) external payable whenNotPaused 
+    uint256[2] memory priceLimits, 
+    uint256[2] memory reserveLimits
+) external whenNotPaused 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter      | Type    | Description                                                                                              |
-| -------------- | ------- | -------------------------------------------------------------------------------------------------------- |
-| recipient      | address | Address to receive minted ibAssets                                                                       |
-| reserveIn      | uint256 | Amount of reserve assets provided for minting                                                            |
-| exactAmountOut | uint256 | Exact amount ibAssets to be minted                                                                       |
-| maxPriceLimit  | uint256 | Maximum effective ibAsset buy price to conduct buy - reverts if buy price is higher than specified value |
+| Parameter      | Type        | Description                                                                                                                          |
+| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| recipient      | address     | Address to receive minted ibAssets                                                                                                   |
+| reserveIn      | uint256     | Amount of reserve assets provided for minting                                                                                        |
+| exactAmountOut | uint256     | Exact amount ibAssets to be minted                                                                                                   |
+| priceLimits    | uint256\[2] | Minimum and maximum effective ibAsset buy prices to conduct buy - reverts if buy price is lower or higher than specified values      |
+| reserveLimits  | uint256\[2] | Minimum and maximum curve reserve amounts to conduct buy - reverts if the curve's reserves are lower or higher than specified values |
 {% endtab %}
 {% endtabs %}
 
@@ -318,17 +326,19 @@ Sells / burns ibAsset tokens to receive reserve assets.&#x20;
 function sellTokens(
     address recipient, 
     uint256 inverseTokenIn, 
-    uint256 minPriceLimit
+    uint256[2] memory priceLimits, 
+    uint256[2] memory reserveLimits
 ) external whenNotPaused 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter      | Type    | Description                                                                                                |
-| -------------- | ------- | ---------------------------------------------------------------------------------------------------------- |
-| recipient      | address | Address to receive reserve assets                                                                          |
-| inverseTokenIn | uint256 | Amount of ibAssets to burn                                                                                 |
-| minPriceLimit  | uint256 | Minimum effective ibAsset sell price to conduct sell - reverts if sell price is lower than specified value |
+| Parameter      | Type        | Description                                                                                                                           |
+| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| recipient      | address     | Address to receive reserve assets                                                                                                     |
+| inverseTokenIn | uint256     | Amount of ibAssets to burn                                                                                                            |
+| priceLimits    | uint256\[2] | Minimum and maximum effective ibAsset sell prices to conduct sell - reverts if sell price is lower or higher than specified values    |
+| reserveLimits  | uint256\[2] | Minimum and maximum curve reserve amounts to conduct sell - reverts if the curve's reserves are lower or higher than specified values |
 {% endtab %}
 {% endtabs %}
 
@@ -344,10 +354,10 @@ function stake(address recipient, uint256 amount) external whenNotPaused
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
-| recipient | address | Address performing the stake action |
-| amount    | uint256 | Amount of ibAssets to stake         |
+| Parameter | Type    | Description                  |
+| --------- | ------- | ---------------------------- |
+| recipient | address | Address to stake ibAssets to |
+| amount    | uint256 | Amount of ibAssets to stake  |
 {% endtab %}
 {% endtabs %}
 
@@ -358,15 +368,15 @@ function stake(address recipient, uint256 amount) external whenNotPaused
 Unstakes specified amount of ibAssets.&#x20;
 
 ```solidity
-function unstake(address recipinet, uint256 amount) external whenNotPaused 
+function unstake(address recipient, uint256 amount) external whenNotPaused 
 ```
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter | Type    | Description                           |
-| --------- | ------- | ------------------------------------- |
-| recipient | uint256 | Address performing the unstake action |
-| amount    | uint256 | Amount of ibAssets to unstake         |
+| Parameter | Type    | Description                          |
+| --------- | ------- | ------------------------------------ |
+| recipient | uint256 | Address to receive unstaked ibAssets |
+| amount    | uint256 | Amount of ibAssets to unstake        |
 {% endtab %}
 {% endtabs %}
 
@@ -382,9 +392,9 @@ function claimReward(address recipient) external whenNotPaused
 
 {% tabs %}
 {% tab title="Parameters" %}
-| Parameter | Type    | Description                         |
-| --------- | ------- | ----------------------------------- |
-| recipient | address | Address performing the claim action |
+| Parameter | Type    | Description                        |
+| --------- | ------- | ---------------------------------- |
+| recipient | address | Address to receive accrued rewards |
 {% endtab %}
 {% endtabs %}
 
@@ -620,9 +630,9 @@ function totalStaked() external view returns (uint256)
 
 
 
-### `blockRewardEMA`
+### `rewardEMAPerSecond`
 
-Gets the EMA-adjusted per-token reward amounts for the specified reward type.&#x20;
+Gets the EMA-adjusted per-token per-second reward amounts for the specified reward type.&#x20;
 
 ```solidity
 function blockRewardEMA(RewardType rewardType) external view returns (
@@ -655,10 +665,10 @@ enum RewardType {
 {% endtab %}
 
 {% tab title="Return Values" %}
-| Parameter          | Type    | Description                                                                     |
-| ------------------ | ------- | ------------------------------------------------------------------------------- |
-| inverseTokenReward | uint256 | Amount of ibAsset rewards accrued per-token for the specified reward type       |
-| reserveReward      | uint256 | Amount of reserve asset rewards accrued per-token for the specified reward type |
+| Parameter          | Type    | Description                                                                                |
+| ------------------ | ------- | ------------------------------------------------------------------------------------------ |
+| inverseTokenReward | uint256 | Per-second amount of ibAsset rewards accrued per-token for the specified reward type       |
+| reserveReward      | uint256 | Per-second amount of reserve asset rewards accrued per-token for the specified reward type |
 {% endtab %}
 {% endtabs %}
 
@@ -683,34 +693,9 @@ function rewardState() external view returns (
 {% endtab %}
 
 {% tab title="Return Values" %}
-| Parameter          | Type                                                            | Description                                        |
-| ------------------ | --------------------------------------------------------------- | -------------------------------------------------- |
-| totalReward        | uint256\[MAX\_FEE\_TYPE\_COUNT]\[MAX\_FEE\_STATE\_COUNT] memory | Total reward amount accrued                        |
-| totalPendingReward | uint256\[MAX\_FEE\_TYPE\_COUNT]\[MAX\_FEE\_STATE\_COUNT] memory | Total reward amount accrued, but yet to be claimed |
+| Parameter          | Type                                                     | Description                                        |
+| ------------------ | -------------------------------------------------------- | -------------------------------------------------- |
+| totalReward        | uint256\[MAX\_FEE\_TYPE\_COUNT]\[MAX\_FEE\_STATE\_COUNT] | Total reward amount accrued                        |
+| totalPendingReward | uint256\[MAX\_FEE\_TYPE\_COUNT]\[MAX\_FEE\_STATE\_COUNT] | Total reward amount accrued, but yet to be claimed |
 {% endtab %}
 {% endtabs %}
-
-
-
-### `getImplementation`
-
-Gets the address of the implemenation contract.&#x20;
-
-```solidity
-function getImplementation() external view returns (address) 
-```
-
-{% tabs %}
-{% tab title="Parameters" %}
-| Parameters | Type | Description |
-| ---------- | ---- | ----------- |
-|            |      |             |
-{% endtab %}
-
-{% tab title="Return Values" %}
-| Type    | Description                        |
-| ------- | ---------------------------------- |
-| address | Address of implementation contract |
-{% endtab %}
-{% endtabs %}
-
