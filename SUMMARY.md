@@ -8,7 +8,7 @@
 
 ## Usecases
 
-* [Exponents](https://docsend.com/view/jj3pb9qawixqtws9)
+* [Exponents](https://exponents.fi/)
 
 ## Concepts & Protocol
 

@@ -4,7 +4,7 @@ The inverse bonding curve implementation is the first demonstration of inverse b
 
 <figure><img src=".gitbook/assets/Logo_Worded_Blue.png" alt=""><figcaption></figcaption></figure>
 
-Inverse bonding curves are a brand new DeFi primitive derived from bonding curves. The pricing algorithm enforced by the inverse bonding curve shows various unique traits, one of them being its arbitrage characteristics. Arbitrage of ibAssets forces ibAssets to devalue per every purchase, regardless of where the purchase was made (CEX, Uniswap, etc. ). **Altogether, the distinctive properties of inverse bonding curves allow for the creation of DeFi mechanisms previously unthought of, one of which is an** [**oracle-free derivatives protocol**](https://docs-staging.exponents.fi/)**.**&#x20;
+Inverse bonding curves are a brand new DeFi primitive derived from bonding curves. The pricing algorithm enforced by the inverse bonding curve shows various unique traits, one of them being its arbitrage characteristics. Arbitrage of ibAssets forces ibAssets to devalue per every purchase, regardless of where the purchase was made (CEX, Uniswap, etc. ). **Altogether, the distinctive properties of inverse bonding curves allow for the creation of DeFi mechanisms previously unthought of, one of which is an** [**oracle-free derivatives protocol**](https://exponents.fi/)**.**&#x20;
 
 The purpose of the inverse bonding curve implementation is to increase awareness and understanding of this new primitive, which will help spark DeFi innovations that leverage its features.&#x20;
 
