@@ -9,7 +9,6 @@ The smart contracts that constitute the inverse bonding curve implementation are
 | Classification | Name             | Chain ID |
 | -------------- | ---------------- | -------- |
 | Mainnet        | Ethereum Mainnet | 1        |
-| Testnet        | Sepolia          | 11155111 |
 
 
 
@@ -19,37 +18,18 @@ The smart contracts that constitute the inverse bonding curve implementation are
 {% tab title="Mainnet" %}
 #### Core IBC Contracts
 
-| Name        | Address |
-| ----------- | ------- |
-| IBC Factory | 0x...   |
-| IBC Router  | 0x...   |
-| IBC Admin   | 0x...   |
+| Name        | Address                                      |
+| ----------- | -------------------------------------------- |
+| IBC Factory | `0x7957F57deafe60b2D0CCdEdBBED85da6f5374adB` |
+| IBC Router  | `0x24a60379c53D90c6E154D7f20EDD25EDbd542b57` |
+| IBC Admin   | `0xE42F7aeA4788CF7198149e8E5f2a557Af475C97d` |
 
 #### ibETH-Related Contracts
 
-| Name                            | Address |
-| ------------------------------- | ------- |
-| ibETH InverseBondingCurve Proxy | 0x...   |
-| ibETH InverseBondingCurve       | 0x...   |
-| ibETH (ERC20)                   | 0x...   |
-{% endtab %}
-
-{% tab title="Sepolia" %}
-#### Core IBC Contracts
-
-| Name        | Address |
-| ----------- | ------- |
-| IBC Factory | 0x...   |
-| IBC Router  | 0x...   |
-| IBC Admin   | 0x...   |
-
-#### ibETH-Related Contracts
-
-| Name                            | Address |
-| ------------------------------- | ------- |
-| ibETH InverseBondingCurve Proxy | 0x...   |
-| ibETH InverseBondingCurve       | 0x...   |
-| ibETH (ERC20)                   | 0x...   |
+| Name                              | Address                                      |
+| --------------------------------- | -------------------------------------------- |
+| ibETH InverseBondingCurve (Proxy) | `0x5594B3D6EbeAbbc13aFC39f569961521e9425262` |
+| ibETH (ERC20)                     | `0xE73EE64adB39a443A251c910e4e3B56f7a4130DC` |
 {% endtab %}
 {% endtabs %}
 
