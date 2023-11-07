@@ -4,7 +4,7 @@
 
 ## Security
 
-* [Trust Security Audit Report](http://bearmarketlabs.xyz/)
+* [Trust Security Audit Report](https://www.trust-security.xyz/ibc-audit)
 
 ## Usecases
 
