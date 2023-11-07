@@ -47,3 +47,4 @@ Each participant contains the following characteristics:&#x20;
 * Curve initializers can be the early users of a new ibAsset, including LPing.&#x20;
 * Provides the initial reserves for a new ibAsset and receives a LP position.&#x20;
 * A small fee is taken from the provided initial reserves.&#x20;
+* The initial LP amount can be removed only after an additional LP joins.&#x20;
